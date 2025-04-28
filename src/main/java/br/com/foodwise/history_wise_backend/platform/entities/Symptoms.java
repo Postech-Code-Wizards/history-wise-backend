@@ -1,0 +1,26 @@
+package br.com.foodwise.history_wise_backend.platform.entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.ZonedDateTime;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "symptoms")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class Symptoms {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private ZonedDateTime createdAt = ZonedDateTime.now();
+}
