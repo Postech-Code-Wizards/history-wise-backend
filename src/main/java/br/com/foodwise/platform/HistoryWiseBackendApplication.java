@@ -1,4 +1,4 @@
-package br.com.foodwise.history_wise_backend;
+package br.com.foodwise.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
