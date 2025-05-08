@@ -1,4 +1,4 @@
-package br.com.foodwise.platform.repository.entities;
+package br.com.foodwise.platform.gateway.database.jpa.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
