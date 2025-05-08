@@ -14,8 +14,8 @@ RUN ./mvnw dependency:go-offline -B
 # Copia a pasta src para dentro de uma pasta src criada forçadamente
 COPY src src
 
-# Criando o JAR, e -X para debugar
-RUN ./mvnw package -DskipTests -X
+# Criando o JAR
+RUN ./mvnw clean package -DskipTests
 
 # Execução com Amazon Corretto 21 (jdk21)
 FROM amazoncorretto:21.0.5-al2023-headless
