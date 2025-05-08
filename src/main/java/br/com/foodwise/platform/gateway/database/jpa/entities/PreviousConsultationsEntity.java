@@ -1,7 +1,23 @@
 package br.com.foodwise.platform.gateway.database.jpa.entities;
 
-import jakarta.persistence.*;
-import lombok.*;
+import br.com.foodwise.platform.domain.enums.Status;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.time.ZonedDateTime;
 
@@ -12,7 +28,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PreviousConsultations {
+public class PreviousConsultationsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,18 +53,15 @@ public class PreviousConsultations {
     private ZonedDateTime completedAt;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Status role;
+    @Column(name = "status", nullable = false)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "diagnostics_id", nullable = false)
-    private Diagnostics diagnostics;
+    private DiagnosticsEntity diagnosticsEntity;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt = ZonedDateTime.now();
 
-    public enum Status {
-        REALIZADA,
-        CANCELADA
-    }
 }

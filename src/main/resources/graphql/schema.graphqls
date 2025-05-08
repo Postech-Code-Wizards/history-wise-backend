@@ -1,0 +1,62 @@
+input PrescriptionsDetailsRequest {
+    medicationName: String!
+    dosage: String!
+    frequency: String!
+    routeOfAdministration: String!
+    instruction: String!
+}
+
+input SymptomsRequest {
+    name: String!
+}
+
+input DiagnosticsRequest {
+    consultation: Int!
+    patient: Int!
+    doctor: Int!
+    symptoms: Int!
+    prescriptionsDetails: Int!
+}
+
+type PrescriptionsDetailsResponse {
+    id: ID!
+    medicationName: String!
+    dosage: String!
+    frequency: String!
+    routeOfAdministration: String!
+    instruction: String!
+    createdAt: String
+}
+
+type SymptomsResponse {
+    id: ID!
+    name: String!
+    createdAt: String
+}
+
+type DiagnosticsResponse {
+    id: ID!
+    consultation: Int!
+    patient: Int!
+    doctor: Int!
+    symptoms: SymptomsResponse!
+    prescriptionsDetails: PrescriptionsDetailsResponse!
+}
+
+extend type Query {
+    getSymptomById(id: ID!): SymptomsResponse
+    listSymptoms: [SymptomsResponse!]!
+    getPrescriptionsDetailsById(id: ID!): PrescriptionsDetailsResponse
+    listPrescriptionsDetails: [PrescriptionsDetailsResponse!]!
+    getDiagnosticsById(id: ID!): DiagnosticsResponse
+    listDiagnostics: [DiagnosticsResponse!]!
+}
+
+extend type Mutation {
+    createSymptom(symptomsRequest: SymptomsRequest!): SymptomsResponse
+    updateSymptom(id: ID!, symptomsUpdateRequest: SymptomsRequest!): SymptomsResponse
+    createPrescriptionsDetails(prescriptionsDetailsRequest: PrescriptionsDetailsRequest!): PrescriptionsDetailsResponse
+    updatePrescriptionsDetails(id: ID!, prescriptionsDetailsUpdateRequest: PrescriptionsDetailsRequest!): PrescriptionsDetailsResponse
+    createDiagnostics(diagnosticsRequest: DiagnosticsRequest!): DiagnosticsResponse
+    updateDiagnostics(id: ID!, diagnosticsUpdateRequest: DiagnosticsRequest!): DiagnosticsResponse
+}

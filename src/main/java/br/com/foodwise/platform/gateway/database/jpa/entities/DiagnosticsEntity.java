@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Diagnostics {
+public class DiagnosticsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,10 @@ public class Diagnostics {
 
     @ManyToOne
     @JoinColumn(name = "symptoms_id", nullable = false)
-    private Symptoms symptoms;
+    private SymptomsEntity symptomsEntity;
 
     @ManyToOne
     @JoinColumn(name = "prescription_details_id", nullable = false)
-    private PrescriptionsDetails prescriptionsDetails;
+    private PrescriptionsDetailsEntity prescriptionsDetailsEntity;
 
 }

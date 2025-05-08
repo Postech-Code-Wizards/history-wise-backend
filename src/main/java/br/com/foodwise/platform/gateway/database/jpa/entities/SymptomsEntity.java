@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Symptoms {
+public class SymptomsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
