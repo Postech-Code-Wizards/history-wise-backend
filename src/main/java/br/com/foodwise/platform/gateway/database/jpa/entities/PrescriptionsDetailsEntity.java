@@ -12,7 +12,6 @@ import java.time.ZonedDateTime;
 @Table(name = "prescriptions_details")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class PrescriptionsDetailsEntity {
 
     @Id

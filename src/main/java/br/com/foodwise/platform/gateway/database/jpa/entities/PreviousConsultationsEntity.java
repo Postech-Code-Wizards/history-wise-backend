@@ -27,7 +27,6 @@ import java.time.ZonedDateTime;
 @Table(name = "diagnostics")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class PreviousConsultationsEntity {
 
     @Id

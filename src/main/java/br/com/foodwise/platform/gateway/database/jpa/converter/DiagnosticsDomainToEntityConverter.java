@@ -14,13 +14,16 @@ public class DiagnosticsDomainToEntityConverter {
     private final SymptomsDomainToEntityConverter symptomsDomainToEntityConverter;
 
     public DiagnosticsEntity convert(Diagnostics source) {
-        var diagnosticsEntity = new DiagnosticsEntity();
-
         var modelMapper = new ModelMapper();
-        modelMapper.map(source, DiagnosticsEntity.class);
+        var diagnosticsEntity = modelMapper.map(source, DiagnosticsEntity.class);
 
-        diagnosticsEntity.setSymptomsEntity(symptomsDomainToEntityConverter.convert(source.getSymptoms()));
-        diagnosticsEntity.setPrescriptionsDetailsEntity(prescriptionsDetailsDomainToEntityConverter.convert(source.getPrescriptionsDetails()));
+        diagnosticsEntity.setSymptomsEntity(
+                symptomsDomainToEntityConverter.convert(source.getSymptoms())
+        );
+
+        diagnosticsEntity.setPrescriptionsDetailsEntity(
+                prescriptionsDetailsDomainToEntityConverter.convert(source.getPrescriptionsDetails())
+        );
 
         return diagnosticsEntity;
     }

@@ -9,7 +9,6 @@ import lombok.*;
 @Table(name = "diagnostics")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class DiagnosticsEntity {
 
     @Id

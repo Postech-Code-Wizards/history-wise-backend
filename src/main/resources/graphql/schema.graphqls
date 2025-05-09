@@ -11,11 +11,11 @@ input SymptomsRequest {
 }
 
 input DiagnosticsRequest {
-    consultation: Int!
-    patient: Int!
-    doctor: Int!
-    symptoms: Int!
-    prescriptionsDetails: Int!
+    consultation: ID!
+    patient: ID!
+    doctor: ID!
+    symptoms: ID!
+    prescriptionsDetails: ID!
 }
 
 type PrescriptionsDetailsResponse {
@@ -35,10 +35,10 @@ type SymptomsResponse {
 }
 
 type DiagnosticsResponse {
-    id: ID!
-    consultation: Int!
-    patient: Int!
-    doctor: Int!
+    id: String!
+    consultation: String!
+    patient: String!
+    doctor: String!
     symptoms: SymptomsResponse!
     prescriptionsDetails: PrescriptionsDetailsResponse!
 }
