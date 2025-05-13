@@ -7,6 +7,7 @@ COPY .mvn .mvn
 COPY pom.xml ./
 COPY src ./src
 
+RUN chmod +x ./mvnw
 RUN ./mvnw clean package -DskipTests
 
 FROM amazoncorretto:21.0.5-al2023-headless
@@ -14,7 +15,5 @@ FROM amazoncorretto:21.0.5-al2023-headless
 WORKDIR /app
 
 COPY --from=build /app/target/*-SNAPSHOT.jar /app/app.jar
-
-USER nobody
 
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
