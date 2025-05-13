@@ -2,13 +2,10 @@ FROM maven:3.9.9-amazoncorretto-21-alpine AS build
 
 WORKDIR /app
 
-COPY ../mvnw ./
-COPY ../.mvn .mvn
 COPY ../pom.xml ./
 COPY ../src ./src
 
-RUN chmod +x ./mvnw
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:21.0.5-al2023-headless
 
