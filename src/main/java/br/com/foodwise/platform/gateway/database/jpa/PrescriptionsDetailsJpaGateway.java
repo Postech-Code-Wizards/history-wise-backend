@@ -5,7 +5,7 @@ import br.com.foodwise.platform.gateway.database.PrescriptionsDetailsGateway;
 import br.com.foodwise.platform.gateway.database.jpa.converter.PrescriptionsDetailsDomainToEntityConverter;
 import br.com.foodwise.platform.gateway.database.jpa.converter.PrescriptionsDetailsEntityToDomainConverter;
 import br.com.foodwise.platform.gateway.database.jpa.repositories.PrescriptionsDetailsRepository;
-import br.com.foodwise.platform.infrastructure.rest.controller.exception.ResourceNotFoundException;
+import br.com.foodwise.platform.infrastructure.graphql.controller.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

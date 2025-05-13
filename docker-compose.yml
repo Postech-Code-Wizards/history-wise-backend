@@ -1,39 +1,41 @@
 volumes:
-  postgres_history_service_data:
+  postgres_data:
     driver: "local"
+  maven_cache:
 
 networks:
-  postgres_history_compose_network:
+  postgres_history_wise_compose_network:
     driver: "bridge"
 
 services:
   postgres:
     image: postgres:alpine
-    container_name: postgres_foodwise_history_service_compose
+    container_name: postgres_history_wise_compose
     restart: always
     environment:
       - POSTGRES_DB=history_service
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - TZ=America/Sao_Paulo
     ports:
       - "5432:5432"
     networks:
-      - postgres_history_compose_network
+      - postgres_history_wise_compose_network
     volumes:
-      - postgres_history_service_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   backend:
     build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: backend_foodwise_history_service_compose
-    environment:
-      - SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/history_service
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=admin
+      context: ..
+      dockerfile: ./
+    container_name: history_wise_backend_compose
+    volumes:
+      - maven_cache:/root/.m2
+    env_file:
+      - .env
     depends_on:
       - postgres
     ports:
       - "8080:8080"
     networks:
-      - postgres_history_compose_network
+      - postgres_history_wise_compose_network

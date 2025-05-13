@@ -1,0 +1,19 @@
+input SymptomsRequest {
+    name: String!
+}
+
+type SymptomsResponse {
+    id: ID!
+    name: String!
+    createdAt: String
+}
+
+extend type Query {
+    getSymptomById(id: ID!): SymptomsResponse
+    listSymptoms: [SymptomsResponse!]!
+}
+
+extend type Mutation {
+    createSymptom(symptomsRequest: SymptomsRequest!): SymptomsResponse
+    updateSymptom(id: ID!, symptomsUpdateRequest: SymptomsRequest!): SymptomsResponse
+}

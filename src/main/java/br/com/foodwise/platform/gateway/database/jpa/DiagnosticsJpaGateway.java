@@ -5,6 +5,7 @@ import br.com.foodwise.platform.gateway.database.DiagnosticsGateway;
 import br.com.foodwise.platform.gateway.database.jpa.converter.DiagnosticsDomainToEntityConverter;
 import br.com.foodwise.platform.gateway.database.jpa.converter.DiagnosticsEntityToDomainConverter;
 import br.com.foodwise.platform.gateway.database.jpa.repositories.DiagnosticsRepository;
+import br.com.foodwise.platform.infrastructure.graphql.controller.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,7 @@ public class DiagnosticsJpaGateway implements DiagnosticsGateway {
     @Override
     public Diagnostics findById(Long id) {
         var diagnosticsEntity = diagnosticsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Diagnostics " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Diagnostics " + id));
         return diagnosticsEntityToDomainConverter.convert(diagnosticsEntity);
     }
 }

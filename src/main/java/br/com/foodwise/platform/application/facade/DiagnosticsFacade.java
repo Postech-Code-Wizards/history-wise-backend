@@ -6,12 +6,12 @@ import br.com.foodwise.platform.application.usecase.diagnostics.CreateDiagnostic
 import br.com.foodwise.platform.application.usecase.diagnostics.RetrieveAllDiagnosticsUseCase;
 import br.com.foodwise.platform.application.usecase.diagnostics.RetrieveDiagnosticsUseCase;
 import br.com.foodwise.platform.application.usecase.diagnostics.UpdateDiagnosticsUseCase;
-import br.com.foodwise.platform.application.usecase.prescriptionsDetails.RetrievePrescriptionsDetailsUseCase;
+import br.com.foodwise.platform.application.usecase.prescriptions_details.RetrievePrescriptionsDetailsUseCase;
 import br.com.foodwise.platform.application.usecase.symptom.RetrieveSymptomUseCase;
 import br.com.foodwise.platform.domain.PrescriptionsDetails;
 import br.com.foodwise.platform.domain.Symptoms;
-import br.com.foodwise.platform.infrastructure.rest.dtos.request.DiagnosticsRequest;
-import br.com.foodwise.platform.infrastructure.rest.dtos.response.DiagnosticsResponse;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.request.DiagnosticsRequest;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.response.DiagnosticsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

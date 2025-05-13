@@ -1,27 +1,23 @@
-package br.com.foodwise.platform.domain;
+package br.com.foodwise.platform.infrastructure.graphql.dtos.request;
 
 import br.com.foodwise.platform.domain.enums.Status;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
 
-@Getter
-@AllArgsConstructor
-@Builder
+@Data
 @NoArgsConstructor
-public class PreviousConsultations {
+@AllArgsConstructor
+public class PreviousConsultationsRequest {
 
-    private Long id;
     private Long consultation;
     private Long patient;
     private Long doctor;
     private Long nurse;
-    private ZonedDateTime scheduledAt;
+    private ZonedDateTime scheduleAt;
     private ZonedDateTime completedAt;
     private Status status;
-    private Diagnostics diagnostics;
-    private ZonedDateTime createdAt;
+    private Long diagnostics;
 }

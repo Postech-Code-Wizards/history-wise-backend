@@ -8,8 +8,8 @@ import br.com.foodwise.platform.application.usecase.symptom.RetrieveAllSymptomsU
 import br.com.foodwise.platform.application.usecase.symptom.RetrieveSymptomUseCase;
 import br.com.foodwise.platform.application.usecase.symptom.UpdateSymptomsUseCase;
 import br.com.foodwise.platform.domain.Symptoms;
-import br.com.foodwise.platform.infrastructure.rest.dtos.request.SymptomsRequest;
-import br.com.foodwise.platform.infrastructure.rest.dtos.response.SymptomsResponse;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.request.SymptomsRequest;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.response.SymptomsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -3,7 +3,7 @@ package br.com.foodwise.platform.application.facade.converter;
 import br.com.foodwise.platform.domain.Diagnostics;
 import br.com.foodwise.platform.domain.PrescriptionsDetails;
 import br.com.foodwise.platform.domain.Symptoms;
-import br.com.foodwise.platform.infrastructure.rest.dtos.request.DiagnosticsRequest;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.request.DiagnosticsRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

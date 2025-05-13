@@ -1,7 +1,7 @@
 package br.com.foodwise.platform.application.facade.converter;
 
 import br.com.foodwise.platform.domain.Diagnostics;
-import br.com.foodwise.platform.infrastructure.rest.dtos.response.DiagnosticsResponse;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.response.DiagnosticsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

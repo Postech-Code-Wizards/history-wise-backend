@@ -5,7 +5,7 @@ import br.com.foodwise.platform.gateway.database.SymptomsGateway;
 import br.com.foodwise.platform.gateway.database.jpa.converter.SymptomsDomainToEntityConverter;
 import br.com.foodwise.platform.gateway.database.jpa.converter.SymptomsEntityToDomainConverter;
 import br.com.foodwise.platform.gateway.database.jpa.repositories.SymptomsRepository;
-import br.com.foodwise.platform.infrastructure.rest.controller.exception.ResourceNotFoundException;
+import br.com.foodwise.platform.infrastructure.graphql.controller.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

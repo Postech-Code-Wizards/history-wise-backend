@@ -1,7 +1,7 @@
 package br.com.foodwise.platform.application.facade.converter;
 
 import br.com.foodwise.platform.domain.PrescriptionsDetails;
-import br.com.foodwise.platform.infrastructure.rest.dtos.request.PrescriptionsDetailsRequest;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.request.PrescriptionsDetailsRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
