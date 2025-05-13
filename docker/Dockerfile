@@ -3,16 +3,16 @@ FROM maven:3.9.9-amazoncorretto-21-alpine AS build
 
 WORKDIR /app
 
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+COPY ../mvnw .
+COPY ../.mvn .mvn
+COPY ../pom.xml .
 
 # copia arquivos de configuração maven
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline -B
 
 # Copia a pasta src para dentro de uma pasta src criada forçadamente
-COPY src src
+COPY ../src src
 
 RUN ./mvnw package -DskipTests
 
