@@ -26,8 +26,8 @@ services:
 
   backend:
     build:
-      context: ../..
-      dockerfile: ../..
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: history_wise_backend_compose
     volumes:
       - maven_cache:/root/.m2
