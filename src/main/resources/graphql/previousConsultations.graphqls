@@ -4,14 +4,17 @@ enum Status {
 }
 
 input PreviousConsultationsRequest {
-    consultation: ID!
-    patient: ID!
-    doctor: ID!
-    nurse: ID!
+    id: ID
+    consultationId: ID!
+    patientId: ID!
+    doctorId: ID!
+    nurseId: ID!
     scheduleAt: String!
     completedAt: String!
     status: Status!
-    diagnostics: ID!
+    diagnosticsId: ID
+    symptomsId: ID!
+    prescriptionsDetailsId: ID!
 }
 
 type PreviousConsultationsResponse {
@@ -30,9 +33,10 @@ type PreviousConsultationsResponse {
 extend type Query {
     getPreviousConsultationsById(id: ID!): PreviousConsultationsResponse
     listPreviousConsultations: [PreviousConsultationsResponse!]!
+    listFuturePreviousConsultations: [PreviousConsultationsResponse!]!
 }
 
 extend type Mutation {
     createPreviousConsultations(previousConsultationsRequest: PreviousConsultationsRequest!): PreviousConsultationsResponse
-    updatePreviousConsultations(id: ID!, previousConsultationsUpdateRequest: PreviousConsultationsRequest!): PreviousConsultationsResponse
+    updatePreviousConsultations(previousConsultationsRequest: PreviousConsultationsRequest!): PreviousConsultationsResponse
 }

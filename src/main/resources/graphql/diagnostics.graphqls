@@ -1,11 +1,3 @@
-input DiagnosticsRequest {
-    consultation: ID!
-    patient: ID!
-    doctor: ID!
-    symptoms: ID!
-    prescriptionsDetails: ID!
-}
-
 type DiagnosticsResponse {
     id: ID!
     consultation: String!
@@ -18,9 +10,4 @@ type DiagnosticsResponse {
 extend type Query {
     getDiagnosticsById(id: ID!): DiagnosticsResponse
     listDiagnostics: [DiagnosticsResponse!]!
-}
-
-extend type Mutation {
-    createDiagnostics(diagnosticsRequest: DiagnosticsRequest!): DiagnosticsResponse
-    updateDiagnostics(id: ID!, diagnosticsUpdateRequest: DiagnosticsRequest!): DiagnosticsResponse
 }

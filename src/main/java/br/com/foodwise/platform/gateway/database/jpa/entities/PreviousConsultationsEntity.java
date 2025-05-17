@@ -35,10 +35,10 @@ public class PreviousConsultationsEntity {
     @Column(name = "nurse_id", nullable = false)
     private Long nurse;
 
-    @Column(name = "scheduled_at", nullable = false, updatable = false)
+    @Column(name = "scheduled_at", nullable = false)
     private ZonedDateTime scheduledAt;
 
-    @Column(name = "completed_at", updatable = false)
+    @Column(name = "completed_at")
     private ZonedDateTime completedAt;
 
     @Enumerated(EnumType.STRING)

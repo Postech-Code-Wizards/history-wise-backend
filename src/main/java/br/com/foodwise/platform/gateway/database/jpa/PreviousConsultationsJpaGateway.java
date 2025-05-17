@@ -5,15 +5,17 @@ import br.com.foodwise.platform.gateway.database.PreviousConsultationsGateway;
 import br.com.foodwise.platform.gateway.database.jpa.converter.PreviousConsultationsDomainToEntityConverter;
 import br.com.foodwise.platform.gateway.database.jpa.converter.PreviousConsultationsEntityToDomainConverter;
 import br.com.foodwise.platform.gateway.database.jpa.repositories.PreviousConsultationsRepository;
-import br.com.foodwise.platform.infrastructure.graphql.controller.exception.ResourceNotFoundException;
+import br.com.foodwise.platform.infrastructure.graphql.controller.exception.CustomExceptionHandler;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class PreviousConsultationsJpaGateway implements PreviousConsultationsGateway {
 
     private final PreviousConsultationsDomainToEntityConverter previousConsultationsDomainToEntityConverter;
@@ -21,22 +23,29 @@ public class PreviousConsultationsJpaGateway implements PreviousConsultationsGat
     private final PreviousConsultationsRepository previousConsultationsRepository;
 
     @Override
-    public PreviousConsultations save(PreviousConsultations previousConsultations) {
+    public void save(PreviousConsultations previousConsultations) {
         var prevToSave = previousConsultationsDomainToEntityConverter.convert(previousConsultations);
-        var saved = previousConsultationsRepository.save(prevToSave);
-        return previousConsultationsEntityToDomainConverter.convert(saved);
+        previousConsultationsRepository.save(prevToSave);
     }
 
     @Override
     public PreviousConsultations findById(Long id) {
         var prevEntity = previousConsultationsRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Previous consultation with id " + id));
+                .orElseThrow(() -> new CustomExceptionHandler("error.not_found", "Previous Consultations with id: " +id));
         return previousConsultationsEntityToDomainConverter.convert(prevEntity);
     }
 
     @Override
     public List<PreviousConsultations> findAll() {
         var prevList = previousConsultationsRepository.findAll();
+        return prevList.stream()
+                .map(previousConsultationsEntityToDomainConverter::convert)
+                .toList();
+    }
+
+    @Override
+    public List<PreviousConsultations> findAllFuture() {
+        var prevList = previousConsultationsRepository.findAllByScheduledAtAfter(ZonedDateTime.now());
         return prevList.stream()
                 .map(previousConsultationsEntityToDomainConverter::convert)
                 .toList();
