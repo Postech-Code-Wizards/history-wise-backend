@@ -3,20 +3,6 @@ enum Status {
     CANCELADA
 }
 
-input PreviousConsultationsRequest {
-    id: ID
-    consultationId: ID!
-    patientId: ID!
-    doctorId: ID!
-    nurseId: ID!
-    scheduleAt: String!
-    completedAt: String!
-    status: Status!
-    diagnosticsId: ID
-    symptomsId: ID!
-    prescriptionsDetailsId: ID!
-}
-
 type PreviousConsultationsResponse {
     id: ID!
     consultation: ID!
@@ -34,9 +20,4 @@ extend type Query {
     getPreviousConsultationsById(id: ID!): PreviousConsultationsResponse
     listPreviousConsultations: [PreviousConsultationsResponse!]!
     listFuturePreviousConsultations: [PreviousConsultationsResponse!]!
-}
-
-extend type Mutation {
-    createPreviousConsultations(previousConsultationsRequest: PreviousConsultationsRequest!): PreviousConsultationsResponse
-    updatePreviousConsultations(previousConsultationsRequest: PreviousConsultationsRequest!): PreviousConsultationsResponse
 }
