@@ -57,5 +57,3 @@ providing a comprehensive report on the patient’s condition over time.
   Access the API:
   - The application will be available at the URL: http://localhost:8080
   - GraphQL Playground: http://localhost:8080/graphiql?path=/graphql
-
----
