@@ -1,21 +1,59 @@
 # 🏥 history-wise-backend
 
-🌟 Visão Geral
-O Serviço de Histórico é responsável por armazenar todas as consultas anteriores dos pacientes, incluindo detalhes sobre diagnósticos, medicação prescrita e sintomas. Ele permite que as consultas realizadas ou canceladas sejam registradas e vinculadas a informações sobre o tratamento médico, facilitando o acompanhamento contínuo da saúde dos pacientes. Esse serviço garante que o histórico médico seja completo e acessível para médicos e outros profissionais de saúde, proporcionando um relatório completo sobre o estado do paciente ao longo do tempo.
+🌟 Overview
+The History Service is responsible for storing all previous patient consultations, including details about diagnoses, 
+prescribed medication and symptoms. It allows appointments made or cancelled to be recorded and linked to 
+information about medical treatment, facilitating ongoing monitoring of patients’ health. 
+This service ensures that medical history is complete and accessible to doctors and other healthcare professionals, 
+providing a comprehensive report on the patient’s condition over time.
 
 ---
 
-### **Esquema de Banco de Dados 🗃️**
+### **Database Schema🗃️**
 ![History Service Database Diagram](https://github.com/user-attachments/assets/3499e837-e99e-417e-bd27-2e44241394d0)
 
-### **Boas Práticas na Modelagem e Design**
+### **Good Practices in Modeling and Design**
 
-  #### **1. Estrutura Relacional Clara**
-  - As tabelas estão organizadas para permitir **relacionamentos claros** entre as consultas, diagnósticos, sintomas, e prescrições, garantindo uma **estrutura relacional eficiente** para consultas rápidas e integradas.
-  - O uso de **chaves estrangeiras** entre as tabelas **`PreviousConsultations`**, **`Diagnostics`**, **`Symptoms`**, e **`PrescriptionDetails`** garante a **integridade referencial** dos dados, facilitando consultas com múltiplos relacionamentos entre as tabelas.
+#### **1. Clear Relational Structure**
+- The tables are organized to allow **clear relationships** between queries, diagnoses, symptoms, and prescriptions, ensuring an **efficient relational structure** for fast and integrated queries.
+- The use of **foreign keys** between the **`PreviousConsultations`**, **`Diagnostics`**, **`Symptoms`**, and **`PrescriptionDetails`** tables ensures the **referential integrity** of the data, 
+- facilitating queries with multiple relationships between the tables.
 
-  #### **2. Histórico Completo e Detalhado**
-  - Cada **consulta** no histórico contém não só a informação básica de quando a consulta foi realizada, mas também os **diagnósticos médicos** e **prescrições**, permitindo um **acompanhamento detalhado** do paciente ao longo do tempo.
+#### **2. Complete and Detailed History**
+- Each **consultation** in the history contains not only the basic information of when the consultation was carried out, but also the **medical diagnoses** and **prescriptions**, allowing for **detailed monitoring** of the patient over time.
 
-  #### **3. Flexibilidade das tabelas**
-  - A tabela **`Symptoms`**, por exemplo, permite que **sintomas** sejam escolhidos de um conjunto predefinido, mas pode ser facilmente **expandida** para incluir mais sintomas ou condições conforme necessário, garantindo a **flexibilidade** do sistema e ao mesmo tempo economia de tempo, caso seja algo simples já cadastrado no banco.
+#### **3. Table flexibility**
+- The **`Symptoms`** table, for example, allows **symptoms** to be chosen from a predefined set, but can easily be **expanded** to include more symptoms or conditions as needed, 
+- ensuring the **flexibility** of the system while also saving time, if it is something simple already registered in the database.
+
+---
+
+## 🛠️ Technologies Used
+
+- **Java JDK 21**: Core programming language.
+- **Spring Boot**: Framework for building microservices.
+- **Maven**: Dependency management and build tool.
+- **PostgreSQL**: Database for storing history.
+- **RabbitMQ**: Message broker for asynchronous communication.
+- **Docker**: Application containerization, MongoDB, RabbitMQ.
+
+---
+
+## 🚀 How to Run
+- **1. Clone the repository**  
+  Clone the repository to your development environment:
+    ```bash
+    git clone https://github.com/Postech-Code-Wizards/history-wise-backend
+    ```
+  In the terminal, navigate to the root of your project:
+    ```bash
+    cd history-wise-backend
+    ```
+
+  Run the project:
+    ```bash
+    docker-compose up -d --build
+    ```
+  Access the API:
+  - The application will be available at the URL: http://localhost:8080
+  - GraphQL Playground: http://localhost:8080/graphiql?path=/graphql

@@ -1,0 +1,13 @@
+type DiagnosticsResponse {
+    id: ID!
+    consultation: String!
+    patient: String!
+    doctor: String!
+    symptoms: SymptomsResponse!
+    prescriptionsDetails: PrescriptionsDetailsResponse!
+}
+
+extend type Query {
+    getDiagnosticsById(id: ID!): DiagnosticsResponse
+    listDiagnostics: [DiagnosticsResponse!]!
+}

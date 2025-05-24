@@ -1,0 +1,23 @@
+enum Status {
+    REALIZADA
+    CANCELADA
+}
+
+type PreviousConsultationsResponse {
+    id: ID!
+    consultation: ID!
+    patient: ID!
+    doctor: ID!
+    nurse: ID!
+    scheduleAt: String!
+    completedAt: String!
+    status: Status!
+    diagnostics: DiagnosticsResponse!
+    createdAt: String!
+}
+
+extend type Query {
+    getPreviousConsultationsById(id: ID!): PreviousConsultationsResponse
+    listPreviousConsultations: [PreviousConsultationsResponse!]!
+    listFuturePreviousConsultations: [PreviousConsultationsResponse!]!
+}
