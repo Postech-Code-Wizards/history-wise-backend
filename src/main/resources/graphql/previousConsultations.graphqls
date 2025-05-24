@@ -1,6 +1,8 @@
 enum Status {
-    REALIZADA
-    CANCELADA
+    SCHEDULED
+    ACCOMPLISHED
+    CANCELLED
+    RESCHEDULED
 }
 
 type PreviousConsultationsResponse {
@@ -12,7 +14,7 @@ type PreviousConsultationsResponse {
     scheduleAt: String!
     completedAt: String!
     status: Status!
-    diagnostics: DiagnosticsResponse!
+    diagnostics: String!
     createdAt: String!
 }
 

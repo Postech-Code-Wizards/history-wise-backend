@@ -9,16 +9,14 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DiagnosticsEntityToDomainConverter {
 
-    private final SymptomsEntityToDomainConverter symptomsEntityToDomainConverter;
-    private final PrescriptionsDetailsEntityToDomainConverter prescriptionsDetailsEntityToDomainConverter;
-
     public Diagnostics convert(DiagnosticsEntity source) {
         return new Diagnostics(source.getId(),
+                source.getDiagnosticId(),
                 source.getConsultation(),
                 source.getPatient(),
                 source.getDoctor(),
-                symptomsEntityToDomainConverter.convert(source.getSymptomsEntity()),
-                prescriptionsDetailsEntityToDomainConverter.convert(source.getPrescriptionsDetailsEntity())
+                source.getSymptoms(),
+                source.getPrescriptionsDetails()
         );
     }
 }
