@@ -13,11 +13,12 @@ public class PreviousConsultationsDomainToEntityConverter {
     private final DiagnosticsDomainToEntityConverter diagnosticsDomainToEntityConverter;
 
     public PreviousConsultationsEntity convert(PreviousConsultations source) {
+        var prevNew = new PreviousConsultationsEntity();
         var modelMapper = new ModelMapper();
-        var previousConsultationsEntity = modelMapper.map(source, PreviousConsultationsEntity.class);
+        modelMapper.map(source, prevNew);
 
-        previousConsultationsEntity.setDiagnosticsEntity(diagnosticsDomainToEntityConverter.convert(source.getDiagnostics()));
+        prevNew.setDiagnosticsEntity(diagnosticsDomainToEntityConverter.convert(source.getDiagnostics()));
 
-        return previousConsultationsEntity;
+        return prevNew;
     }
 }

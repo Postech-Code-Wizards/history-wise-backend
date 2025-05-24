@@ -17,11 +17,6 @@ public class DiagnosticsController {
     
     private final DiagnosticsFacade diagnosticsFacade;
 
-    @MutationMapping
-    public DiagnosticsResponse createDiagnostics(@Argument DiagnosticsRequest diagnosticsRequest) {
-        return diagnosticsFacade.create(diagnosticsRequest);
-    }
-
     @QueryMapping
     public DiagnosticsResponse getDiagnosticsById(@Argument Long id) {
         return diagnosticsFacade.getById(id);
@@ -32,8 +27,4 @@ public class DiagnosticsController {
         return diagnosticsFacade.getAll();
     }
 
-    @MutationMapping
-    public DiagnosticsResponse updateDiagnostics(@Argument Long id, @Argument DiagnosticsRequest diagnosticsUpdateRequest) {
-        return diagnosticsFacade.update(id, diagnosticsUpdateRequest);
-    }
 }

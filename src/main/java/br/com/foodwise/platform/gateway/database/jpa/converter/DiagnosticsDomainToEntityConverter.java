@@ -14,8 +14,11 @@ public class DiagnosticsDomainToEntityConverter {
     private final SymptomsDomainToEntityConverter symptomsDomainToEntityConverter;
 
     public DiagnosticsEntity convert(Diagnostics source) {
+
+        var diagnosticsEntity = new DiagnosticsEntity();
         var modelMapper = new ModelMapper();
-        var diagnosticsEntity = modelMapper.map(source, DiagnosticsEntity.class);
+
+        modelMapper.map(source, diagnosticsEntity);
 
         diagnosticsEntity.setSymptomsEntity(
                 symptomsDomainToEntityConverter.convert(source.getSymptoms())

@@ -5,7 +5,7 @@ import br.com.foodwise.platform.gateway.database.PrescriptionsDetailsGateway;
 import br.com.foodwise.platform.gateway.database.jpa.converter.PrescriptionsDetailsDomainToEntityConverter;
 import br.com.foodwise.platform.gateway.database.jpa.converter.PrescriptionsDetailsEntityToDomainConverter;
 import br.com.foodwise.platform.gateway.database.jpa.repositories.PrescriptionsDetailsRepository;
-import br.com.foodwise.platform.infrastructure.graphql.controller.exception.ResourceNotFoundException;
+import br.com.foodwise.platform.infrastructure.graphql.controller.exception.CustomExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +29,7 @@ public class PrescriptionsDetailsJpaGateway implements PrescriptionsDetailsGatew
     @Override
     public PrescriptionsDetails findById(Long id) {
         var prescriptionsDetailsEntity = prescriptionsDetailsRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Prescription Details " + id));
+                .orElseThrow(() -> new CustomExceptionHandler("error.not_found", "Prescriptions Details " +id));
         return prescriptionsDetailsEntityToDomainConverter.convert(prescriptionsDetailsEntity);
     }
 

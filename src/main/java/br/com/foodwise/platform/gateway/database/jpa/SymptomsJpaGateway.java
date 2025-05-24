@@ -5,7 +5,7 @@ import br.com.foodwise.platform.gateway.database.SymptomsGateway;
 import br.com.foodwise.platform.gateway.database.jpa.converter.SymptomsDomainToEntityConverter;
 import br.com.foodwise.platform.gateway.database.jpa.converter.SymptomsEntityToDomainConverter;
 import br.com.foodwise.platform.gateway.database.jpa.repositories.SymptomsRepository;
-import br.com.foodwise.platform.infrastructure.graphql.controller.exception.ResourceNotFoundException;
+import br.com.foodwise.platform.infrastructure.graphql.controller.exception.CustomExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +29,7 @@ public class SymptomsJpaGateway implements SymptomsGateway {
     @Override
     public Symptoms findById(Long id) {
         var symptomsEntity = symptomsRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Symptom " + id));
+                .orElseThrow(() -> new CustomExceptionHandler("error.not_found", "Symptom " +id));
         return symptomsEntityToDomainConverter.convert(symptomsEntity);
     }
 

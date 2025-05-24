@@ -12,12 +12,15 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class PreviousConsultationsRequest {
 
-    private Long consultation;
-    private Long patient;
-    private Long doctor;
-    private Long nurse;
+    private Long id;
+    private Long consultationId;
+    private Long patientId;
+    private Long doctorId;
+    private Long nurseId;
     private ZonedDateTime scheduleAt;
     private ZonedDateTime completedAt;
     private Status status;
-    private Long diagnostics;
+    private Long diagnosticsId;
+    private Long symptomsId;
+    private Long prescriptionsDetailsId;
 }

@@ -8,9 +8,11 @@ import br.com.foodwise.platform.application.usecase.diagnostics.RetrieveDiagnost
 import br.com.foodwise.platform.application.usecase.diagnostics.UpdateDiagnosticsUseCase;
 import br.com.foodwise.platform.application.usecase.prescriptions_details.RetrievePrescriptionsDetailsUseCase;
 import br.com.foodwise.platform.application.usecase.symptom.RetrieveSymptomUseCase;
+import br.com.foodwise.platform.domain.Diagnostics;
 import br.com.foodwise.platform.domain.PrescriptionsDetails;
 import br.com.foodwise.platform.domain.Symptoms;
 import br.com.foodwise.platform.infrastructure.graphql.dtos.request.DiagnosticsRequest;
+import br.com.foodwise.platform.infrastructure.graphql.dtos.request.PreviousConsultationsRequest;
 import br.com.foodwise.platform.infrastructure.graphql.dtos.response.DiagnosticsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,12 +34,12 @@ public class DiagnosticsFacade {
     private final RetrieveDiagnosticsUseCase retrieveDiagnosticsUseCase;
     private final UpdateDiagnosticsUseCase updateDiagnosticsUseCase;
 
-    public DiagnosticsResponse create(DiagnosticsRequest diagnosticsRequest) {
-        Symptoms existingSymptom = retrieveSymptomUseCase.execute(diagnosticsRequest.getSymptoms());
-        PrescriptionsDetails existingPrescriptionsDetails = retrievePrescriptionsDetailsUseCase.execute(diagnosticsRequest.getPrescriptionsDetails());
-        var diagnostics = diagnosticsRequestToDomain.convert(diagnosticsRequest, existingSymptom, existingPrescriptionsDetails);
-        var diagnosticsSaved = createDiagnosticsUseCase.execute(diagnostics);
-        return diagnosticsDomainToResponseConverter.convert(diagnosticsSaved);
+
+    public Diagnostics create(PreviousConsultationsRequest previousConsultationsRequest) {
+        Symptoms existingSymptom = retrieveSymptomUseCase.execute(previousConsultationsRequest.getSymptomsId());
+        PrescriptionsDetails existingPrescriptionsDetails = retrievePrescriptionsDetailsUseCase.execute(previousConsultationsRequest.getPrescriptionsDetailsId());
+        var diagnostics = diagnosticsRequestToDomain.convert(previousConsultationsRequest, existingSymptom, existingPrescriptionsDetails);
+        return createDiagnosticsUseCase.execute(diagnostics);
     }
 
     public DiagnosticsResponse getById(Long id) {
@@ -50,14 +52,13 @@ public class DiagnosticsFacade {
         return diagnosticsList.stream().map(diagnosticsDomainToResponseConverter::convert).toList();
     }
 
-    public DiagnosticsResponse update(Long id, DiagnosticsRequest diagnosticsUpdateRequest) {
-        var existingSymptom = retrieveSymptomUseCase.execute(diagnosticsUpdateRequest.getSymptoms());
-        var existingPrescriptionsDetails = retrievePrescriptionsDetailsUseCase.execute(diagnosticsUpdateRequest.getPrescriptionsDetails());
-        var existingDiagnostics = retrieveDiagnosticsUseCase.execute(id);
+    public Diagnostics update(PreviousConsultationsRequest previousConsultationsUpdateRequest) {
+        var existingSymptom = retrieveSymptomUseCase.execute(previousConsultationsUpdateRequest.getSymptomsId());
+        var existingPrescriptionsDetails = retrievePrescriptionsDetailsUseCase.execute(previousConsultationsUpdateRequest.getPrescriptionsDetailsId());
+        var existingDiagnostics = retrieveDiagnosticsUseCase.execute(previousConsultationsUpdateRequest.getDiagnosticsId());
 
         var diagnosticsConverter = diagnosticsRequestToDomain.convert(existingDiagnostics,
-                                                existingSymptom, existingPrescriptionsDetails, diagnosticsUpdateRequest);
-        var diagnosticsUpdated = updateDiagnosticsUseCase.execute(diagnosticsConverter);
-        return diagnosticsDomainToResponseConverter.convert(diagnosticsUpdated);
+                existingSymptom, existingPrescriptionsDetails, previousConsultationsUpdateRequest);
+        return updateDiagnosticsUseCase.execute(diagnosticsConverter);
     }
 }

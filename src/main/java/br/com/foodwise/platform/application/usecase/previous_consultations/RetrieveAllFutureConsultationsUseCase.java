@@ -5,13 +5,15 @@ import br.com.foodwise.platform.gateway.database.PreviousConsultationsGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class CreatePreviousConsultationsUseCase {
+public class RetrieveAllFutureConsultationsUseCase {
 
     private final PreviousConsultationsGateway previousConsultationsGateway;
 
-    public void execute(PreviousConsultations previousConsultations) {
-        previousConsultationsGateway.save(previousConsultations);
+    public List<PreviousConsultations> execute() {
+        return previousConsultationsGateway.findAllFuture();
     }
 }
