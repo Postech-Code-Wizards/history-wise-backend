@@ -38,4 +38,14 @@ public class DiagnosticsJpaGateway implements DiagnosticsGateway {
                 .orElseThrow(() -> new CustomExceptionHandler("error.not_found", "Diagnóstico " +id));
         return diagnosticsEntityToDomainConverter.convert(diagnosticsEntity);
     }
+
+    @Override
+    public Diagnostics findByIdOrSave(Diagnostics diagnostics) {
+        var diagnosticsEntity = diagnosticsRepository.findById(diagnostics.getId())
+                .orElse(null);
+        if (diagnosticsEntity == null) {
+            return save(diagnostics);
+        }
+        return diagnosticsEntityToDomainConverter.convert(diagnosticsEntity);
+    }
 }

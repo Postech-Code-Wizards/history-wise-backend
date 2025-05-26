@@ -12,9 +12,10 @@ import lombok.NoArgsConstructor;
 public class Diagnostics {
 
     private Long id;
+    private Long diagnosticId;
     private Long consultation;
     private Long patient;
     private Long doctor;
-    private Symptoms symptoms;
-    private PrescriptionsDetails prescriptionsDetails;
+    private Long symptoms;
+    private Long prescriptionsDetails;
 }

@@ -42,4 +42,19 @@ public class PreviousConsultationsRequestToDomain {
                 .createdAt(existingPreviousConsultations.getCreatedAt())
                 .build();
     }
+
+    public PreviousConsultations convert(Diagnostics existingDiagnostics, PreviousConsultationsRequest previousConsultationsUpdateRequest) {
+        return PreviousConsultations.builder()
+                .id(null)
+                .consultation(previousConsultationsUpdateRequest.getConsultationId())
+                .patient(previousConsultationsUpdateRequest.getPatientId())
+                .doctor(previousConsultationsUpdateRequest.getDoctorId())
+                .nurse(previousConsultationsUpdateRequest.getNurseId())
+                .scheduledAt(previousConsultationsUpdateRequest.getScheduleAt())
+                .completedAt(previousConsultationsUpdateRequest.getCompletedAt())
+                .status(previousConsultationsUpdateRequest.getStatus())
+                .diagnostics(existingDiagnostics)
+                .createdAt(ZonedDateTime.now())
+                .build();
+    }
 }

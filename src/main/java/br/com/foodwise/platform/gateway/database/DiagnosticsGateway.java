@@ -10,4 +10,6 @@ public interface DiagnosticsGateway {
     List<Diagnostics> findAll();
 
     Diagnostics findById(Long id);
+
+    Diagnostics findByIdOrSave(Diagnostics diagnostics);
 }

@@ -30,16 +30,6 @@ public class PreviousConsultationsFacade {
     private final RetrieveAllPreviousConsultationsUseCase retrieveAllPreviousConsultationsUseCase;
     private final RetrieveAllFutureConsultationsUseCase retrieveAllFutureConsultationsUseCase;
 
-    @RabbitListener(queues = RabbitMQConfig.HISTORY_NEW_QUEUE)
-    public void create(PreviousConsultationsRequest previousConsultationsRequest) {
-
-        Diagnostics diagnostics = diagnosticsFacade.create(previousConsultationsRequest);
-
-        var previousConsultations = previousConsultationsRequestToDomain.convert(previousConsultationsRequest, diagnostics);
-
-        createPreviousConsultationsUseCase.execute(previousConsultations);
-    }
-
     public PreviousConsultationsResponse getById(Long id) {
         var previousConsultations = retrievePreviousConsultationsByIdUseCase.execute(id);
         return previousConsultationsToResponseConverter.convert(previousConsultations);
@@ -55,10 +45,7 @@ public class PreviousConsultationsFacade {
 
         Diagnostics existingDiagnostics = diagnosticsFacade.update(previousConsultationsUpdateRequest);
 
-        var existingPreviousConsultations = retrievePreviousConsultationsByIdUseCase.execute(previousConsultationsUpdateRequest.getId());
-
-        var previousConverter = previousConsultationsRequestToDomain.convert(existingPreviousConsultations,
-                existingDiagnostics, previousConsultationsUpdateRequest);
+        var previousConverter = previousConsultationsRequestToDomain.convert(existingDiagnostics, previousConsultationsUpdateRequest);
 
         createPreviousConsultationsUseCase.execute(previousConverter);
     }

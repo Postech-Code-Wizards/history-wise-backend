@@ -3,8 +3,8 @@ type DiagnosticsResponse {
     consultation: String!
     patient: String!
     doctor: String!
-    symptoms: SymptomsResponse!
-    prescriptionsDetails: PrescriptionsDetailsResponse!
+    symptoms: String!
+    prescriptionsDetails: String!
 }
 
 extend type Query {
