@@ -1,7 +1,5 @@
 package br.com.foodwise.platform.infrastructure.graphql.dtos.response;
 
-import br.com.foodwise.platform.domain.PrescriptionsDetails;
-import br.com.foodwise.platform.domain.Symptoms;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +17,6 @@ public class DiagnosticsResponse {
     private Long consultation;
     private Long patient;
     private Long doctor;
-    private Symptoms symptoms;
-    private PrescriptionsDetails prescriptionsDetails;
+    private Long symptoms;
+    private Long prescriptionsDetails;
 }

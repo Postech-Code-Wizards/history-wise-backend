@@ -15,6 +15,9 @@ public class DiagnosticsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "diagnostic_id")
+    private Long diagnosticId;
+
     @Column(name = "consultation_id", nullable = false)
     private Long consultation;
 
@@ -24,12 +27,10 @@ public class DiagnosticsEntity {
     @Column(name = "doctor_id", nullable = false)
     private Long doctor;
 
-    @ManyToOne
-    @JoinColumn(name = "symptoms_id", nullable = false)
-    private SymptomsEntity symptomsEntity;
+    @Column(name = "symptoms_id", nullable = false)
+    private Long symptoms;
 
-    @ManyToOne
-    @JoinColumn(name = "prescription_details_id", nullable = false)
-    private PrescriptionsDetailsEntity prescriptionsDetailsEntity;
+    @Column(name = "prescription_details_id", nullable = false)
+    private Long prescriptionsDetails;
 
 }

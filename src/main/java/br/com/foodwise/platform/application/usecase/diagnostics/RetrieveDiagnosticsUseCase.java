@@ -11,6 +11,10 @@ public class RetrieveDiagnosticsUseCase {
 
     private final DiagnosticsGateway diagnosticsGateway;
 
+    public Diagnostics execute(Diagnostics diagnostics) {
+        return diagnosticsGateway.findByIdOrSave(diagnostics);
+    }
+
     public Diagnostics execute(Long id) {
         return diagnosticsGateway.findById(id);
     }
